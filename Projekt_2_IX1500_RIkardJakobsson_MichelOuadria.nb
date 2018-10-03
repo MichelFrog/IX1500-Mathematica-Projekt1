@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     32728,        832]
-NotebookOptionsPosition[     21470,        576]
-NotebookOutlinePosition[     29079,        772]
-CellTagsIndexPosition[     29036,        769]
+NotebookDataLength[     32150,        814]
+NotebookOptionsPosition[     20988,        559]
+NotebookOutlinePosition[     28597,        755]
+CellTagsIndexPosition[     28554,        752]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -356,95 +356,94 @@ Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{
-   RowBox[{"Remove", "[", "\"\<Global`*\>\"", "]"}], ";"}], 
-  "\n"}], "\[IndentingNewLine]", 
+  RowBox[{"Remove", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n", 
  RowBox[{
-  RowBox[{"RSAcrack", "[", 
-   RowBox[{"cipher_", ",", "n_", ",", "e_"}], "]"}], ":=", 
-  RowBox[{"(", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"B", " ", "=", " ", "256"}], ";", 
-    RowBox[{"(*", 
-     RowBox[{"Base", " ", "for", " ", "the", " ", "ascii"}], "*)"}], 
-    "\[IndentingNewLine]", "\[IndentingNewLine]", 
-    RowBox[{"pq", " ", "=", " ", 
-     RowBox[{"FactorInteger", "[", "n", "]"}]}], ";", "\n", "     ", 
-    RowBox[{"(*", 
-     RowBox[{
-     "One", " ", "of", " ", "the", " ", "two", " ", "prime", " ", "factors", 
-      " ", "of", " ", "n"}], "*)"}], "\[IndentingNewLine]", 
-    RowBox[{"p", " ", "=", " ", 
-     RowBox[{"pq", "[", 
-      RowBox[{"[", 
-       RowBox[{"0", ",", "1"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-    RowBox[{"q", "=", 
-     RowBox[{"pq", "[", 
-      RowBox[{"[", 
-       RowBox[{"1", ",", "1"}], "]"}], "]"}]}], ";", 
-    RowBox[{"(*", 
-     RowBox[{
-      RowBox[{"Second", " ", "of", " ", "the", " ", "two"}], "..."}], "*)"}], 
-    "\[IndentingNewLine]", 
-    RowBox[{"phi", " ", "=", " ", 
-     RowBox[{
-      RowBox[{"(", 
-       RowBox[{"p", "-", "1"}], ")"}], "*", 
-      RowBox[{"(", 
-       RowBox[{"q", "-", "1"}], ")"}]}]}], ";", 
-    RowBox[{"(*", 
-     RowBox[{
-      RowBox[{
-      "Phi", " ", "of", " ", "any", " ", "prime", " ", "number", " ", "is"}], 
-      " ", "-", 
-      RowBox[{
-      "1", " ", "since", " ", "no", " ", "prime", " ", "number", " ", "has", 
-       " ", "no", " ", "factor", " ", "greater", " ", "than", " ", "one"}]}], 
-     "*)"}], "\[IndentingNewLine]", 
-    RowBox[{"GCD", "[", 
-     RowBox[{"phi", ",", "e"}], "]"}], ";", "\[IndentingNewLine]", 
-    RowBox[{"dBob", " ", "=", " ", 
-     RowBox[{"PowerMod", "[", 
-      RowBox[{"e", ",", 
-       RowBox[{"-", "1"}], ",", "phi"}], "]"}]}], ";", "\[IndentingNewLine]", 
-    RowBox[{"(*", 
-     RowBox[{
-      RowBox[{"mFromAlice", "=", 
-       RowBox[{"PowerMod", "[", 
-        RowBox[{
-         RowBox[{"cAlice", "[", 
-          RowBox[{"[", "1", "]"}], "]"}], ",", "dBob", ",", "nBob"}], "]"}]}],
-       ";"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"readMessage", "[", "x_", "]"}], ":=", 
+   RowBox[{"(", "\[IndentingNewLine]", 
     RowBox[{
-     RowBox[{"readMessage", "[", "x_", "]"}], ":=", 
-     RowBox[{
-      RowBox[{"(", "\[IndentingNewLine]", 
+     RowBox[{"mFromAlice", "=", 
+      RowBox[{"PowerMod", "[", 
+       RowBox[{"x", ",", "dBob", ",", "nBob"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"q", "=", "mFromAlice"}], ";", 
+     RowBox[{"ascii", "=", 
+      RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"While", "[", 
+      RowBox[{
+       RowBox[{"q", "\[NotEqual]", "0"}], ",", "\[IndentingNewLine]", 
        RowBox[{
-        RowBox[{"mFromAlice", "=", 
-         RowBox[{"PowerMod", "[", 
-          RowBox[{"x", ",", "dBob", ",", "nBob"}], "]"}]}], ";", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"ascii", ",", 
+          RowBox[{"Mod", "[", 
+           RowBox[{"q", ",", "B"}], "]"}]}], "]"}], ";", 
         "\[IndentingNewLine]", 
-        RowBox[{"q", "=", "mFromAlice"}], ";", 
-        RowBox[{"ascii", "=", 
-         RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
-        RowBox[{"While", "[", 
-         RowBox[{
-          RowBox[{"q", "\[NotEqual]", "0"}], ",", "\[IndentingNewLine]", 
-          RowBox[{
-           RowBox[{"AppendTo", "[", 
-            RowBox[{"ascii", ",", 
-             RowBox[{"Mod", "[", 
-              RowBox[{"q", ",", "B"}], "]"}]}], "]"}], ";", 
-           "\[IndentingNewLine]", 
-           RowBox[{"q", "=", 
-            RowBox[{"Quotient", "[", 
-             RowBox[{"q", ",", "B"}], "]"}]}]}]}], "\[IndentingNewLine]", 
-         "]"}], ";", "\[IndentingNewLine]", 
-        RowBox[{"FromCharacterCode", "[", "ascii", "]"}]}], ")"}], 
+        RowBox[{"q", "=", 
+         RowBox[{"Quotient", "[", 
+          RowBox[{"q", ",", "B"}], "]"}]}]}]}], "\[IndentingNewLine]", "]"}], 
+     ";", "\[IndentingNewLine]", 
+     RowBox[{"FromCharacterCode", "[", "ascii", "]"}]}], ")"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"RSAcrack", "[", 
+    RowBox[{"cipher_", ",", "n_", ",", "e_"}], "]"}], ":=", 
+   RowBox[{"(", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"B", " ", "=", " ", "256"}], ";", 
+     RowBox[{"(*", 
+      RowBox[{"Base", " ", "for", " ", "the", " ", "ascii"}], "*)"}], 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"pq", " ", "=", " ", 
+      RowBox[{"FactorInteger", "[", "n", "]"}]}], ";", "\n", "     ", 
+     RowBox[{"(*", 
+      RowBox[{
+      "One", " ", "of", " ", "the", " ", "two", " ", "prime", " ", "factors", 
+       " ", "of", " ", "n"}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"p", " ", "=", " ", 
+      RowBox[{"pq", "[", 
+       RowBox[{"[", 
+        RowBox[{"1", ",", "1"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"q", "=", 
+      RowBox[{"pq", "[", 
+       RowBox[{"[", 
+        RowBox[{"2", ",", "1"}], "]"}], "]"}]}], ";", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{"Second", " ", "of", " ", "the", " ", "two"}], "..."}], "*)"}],
       "\[IndentingNewLine]", 
-      RowBox[{"StringJoin", "[", 
-       RowBox[{"readMessage", "/@", "cipher"}], "]"}]}]}]}], 
-   ")"}]}], "\[IndentingNewLine]", 
+     RowBox[{"phi", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"p", "-", "1"}], ")"}], "*", 
+       RowBox[{"(", 
+        RowBox[{"q", "-", "1"}], ")"}]}]}], ";", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{
+       "Phi", " ", "of", " ", "any", " ", "prime", " ", "number", " ", "is"}],
+        " ", "-", 
+       RowBox[{
+       "1", " ", "since", " ", "no", " ", "prime", " ", "number", " ", "has", 
+        " ", "no", " ", "factor", " ", "greater", " ", "than", " ", "one"}]}],
+       "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"GCD", "[", 
+      RowBox[{"phi", ",", "e"}], "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"dBob", " ", "=", " ", 
+      RowBox[{"PowerMod", "[", 
+       RowBox[{"e", ",", 
+        RowBox[{"-", "1"}], ",", "phi"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{"mFromAlice", "=", 
+        RowBox[{"PowerMod", "[", 
+         RowBox[{
+          RowBox[{"cAlice", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], ",", "dBob", ",", "nBob"}], 
+         "]"}]}], ";"}], "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"StringJoin", "[", 
+      RowBox[{"readMessage", "/@", "cipher"}], "]"}]}], ")"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
   "nBob", "=", "126456119090476383371855906671054993650778797793018127"}], 
@@ -473,11 +472,7 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"RSAcrack", "[", 
-   RowBox[{"cAlice", ",", "nBob", ",", 
-    StyleBox[
-     RowBox[{"e", 
-      StyleBox["Bob",
-       FontWeight->"Bold"]}]]}], 
+   RowBox[{"cAlice", ",", "nBob", ",", "eBob"}], 
    StyleBox["]",
     FontWeight->"Bold"]}], "\n", 
   StyleBox[
@@ -487,63 +482,51 @@ Cell[BoxData[{
      "Bob", " ", "wants", " ", "to", " ", "send", " ", "a", " ", "message", 
       " ", "to", " ", 
       RowBox[{"alice", ".", " ", "He"}], "  ", "pads", " ", "it", " ", "with",
-       " ", "m"}], "\[IndentingNewLine]", 
-     RowBox[{
+       " ", "m", "\[IndentingNewLine]", 
       RowBox[{
       "Alice", " ", "generates", " ", "public", " ", "and", " ", "private", 
        " ", "key", " ", "by", " ", "generate", " ", "a", " ", "prime", " ", 
-       "of", " ", "same", " ", "size"}], ",", " ", 
-      RowBox[{"100", "-", "200."}]}], " ", "\[IndentingNewLine]", 
-     RowBox[{"Then", ",", " ", 
-      RowBox[{"muliply", " ", "to", " ", "get", " ", 
-       RowBox[{"n", ".", " ", "\[IndentingNewLine]", "Then"}], " ", "to", " ",
-        "get", " ", "Phi", " ", "of", " ", "n"}], ",", " ", 
-      RowBox[{
-       RowBox[{"(", 
-        RowBox[{"p", "-", "1"}], ")"}], "*", 
-       RowBox[{"(", 
-        RowBox[{"q", "-", "1"}], ")"}]}]}], "\[IndentingNewLine]", 
+       "of", " ", "same", " ", "size"}]}], ",", " ", 
+     RowBox[{"100", "-", 
+      RowBox[{"200.", " ", "\[IndentingNewLine]", "Then"}]}], ",", " ", 
+     RowBox[{"muliply", " ", "to", " ", "get", " ", 
+      RowBox[{"n", ".", " ", "\[IndentingNewLine]", "Then"}], " ", "to", " ", 
+      "get", " ", "Phi", " ", "of", " ", "n"}], ",", " ", 
      RowBox[{
+      RowBox[{"(", 
+       RowBox[{"p", "-", "1"}], ")"}], "*", 
+      RowBox[{"(", 
+       RowBox[{"q", "-", "1"}], ")"}], "\[IndentingNewLine]", 
       RowBox[{
-      "Pick", " ", "a", " ", "small", " ", "odd", " ", "number", " ", "that", 
-       " ", 
-       RowBox[{"DOESN", "'"}], "T", " ", "share", " ", "a", " ", "factor", 
-       " ", "with", " ", "Phi", 
        RowBox[{
-        RowBox[{"(", "N", ")"}], ".", "\[IndentingNewLine]", "Finally"}]}], 
-      ",", " ", 
-      RowBox[{"find", " ", 
-       RowBox[{"d", "."}]}]}]}], " ", "\[IndentingNewLine]", "*)"}],
+       "Pick", " ", "a", " ", "small", " ", "odd", " ", "number", " ", "that",
+         " ", 
+        RowBox[{"DOESN", "'"}], "T", " ", "share", " ", "a", " ", "factor", 
+        " ", "with", " ", "Phi", 
+        RowBox[{
+         RowBox[{"(", "N", ")"}], ".", "\[IndentingNewLine]", "Finally"}]}], 
+       ",", " ", 
+       RowBox[{"find", " ", 
+        RowBox[{"d", "."}]}]}]}]}], " ", "\[IndentingNewLine]", "*)"}],
    FontFamily->"Courier New",
    FontWeight->"Regular"]}], "\[IndentingNewLine]"}], "Input",
  CellChangeTimes->{{3.747549876507493*^9, 3.7475499112114553`*^9}, {
-  3.7475499438211703`*^9, 3.7475499492750454`*^9}, {3.7475499914124193`*^9, 
-  3.747550014662299*^9}, {3.74755120878083*^9, 3.74755121152407*^9}, {
-  3.7475512448024282`*^9, 3.7475513744554076`*^9}, {3.7475514406412125`*^9, 
-  3.7475514884736223`*^9}},ExpressionUUID->"6fdbb906-5bdb-4ac2-8605-\
+   3.7475499438211703`*^9, 3.7475499492750454`*^9}, {3.7475499914124193`*^9, 
+   3.747550014662299*^9}, {3.74755120878083*^9, 3.74755121152407*^9}, {
+   3.7475512448024282`*^9, 3.7475513744554076`*^9}, {3.7475514406412125`*^9, 
+   3.7475514884736223`*^9}, {3.7475517083599305`*^9, 3.747551710538432*^9}, 
+   3.747551758959484*^9, {3.747551802639903*^9, 3.747551818482092*^9}, {
+   3.7475520029589005`*^9, 
+   3.7475520271483583`*^9}},ExpressionUUID->"6fdbb906-5bdb-4ac2-8605-\
 06731da069ee"],
 
-Cell[BoxData[
- TemplateBox[{
-  "Part","partd",
-   "\"Part specification \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\
-\\\"{\\\", RowBox[{\\\"255471513878248459929909589\\\", \\\",\\\", \
-\\\"1\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"494991074232809803525292243\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\"\[LeftDoubleBracket]\\\", RowBox[{\\\"0\\\", \
-\\\",\\\", \\\"1\\\"}], \\\"\[RightDoubleBracket]\\\"}]\\) is longer than \
-depth of object.\"",2,579,54,29199942577991533334,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{{3.7475512741501455`*^9, 3.747551299094892*^9}, {
-   3.747551333085441*^9, 3.7475513781787796`*^9}, 
-   3.7475515068096175`*^9},ExpressionUUID->"aa026e9c-f0d1-4055-a855-\
-24b7038c1498"]
-}, Open  ]],
-
-Cell[BoxData["\n"], "Input",
+Cell[BoxData["\<\"Congratulations! You have now managed to crack the RSA \
+cipher. This means that you have a pass grade for project 2. If you want to \
+pursue a higher grade you need to solve one more problem.  \"\>"], "Output",
  CellChangeTimes->{
-  3.7475514934495883`*^9},ExpressionUUID->"d26a5c87-aa2c-4a67-bb5e-\
-0e99f0d4bc91"],
+  3.7475520438966665`*^9},ExpressionUUID->"a2231d6b-2821-4d7d-aed2-\
+7ddef0ec298c"]
+}, Open  ]],
 
 Cell["", "Item",
  CellChangeTimes->{
@@ -820,18 +803,17 @@ Cell[12587, 340, 252, 6, 29, "Text",ExpressionUUID->"9f58eac4-5992-4cb7-a0dd-572
 Cell[CellGroupData[{
 Cell[12888, 352, 78, 0, 54, "Section",ExpressionUUID->"a4c88bd6-dac7-47d2-81b0-72668aee5a85"],
 Cell[CellGroupData[{
-Cell[12991, 356, 6741, 167, 819, "Input",ExpressionUUID->"6fdbb906-5bdb-4ac2-8605-06731da069ee"],
-Cell[19735, 525, 784, 14, 20, "Message",ExpressionUUID->"aa026e9c-f0d1-4055-a855-24b7038c1498"]
+Cell[12991, 356, 6845, 164, 855, "Input",ExpressionUUID->"6fdbb906-5bdb-4ac2-8605-06731da069ee"],
+Cell[19839, 522, 333, 5, 49, "Output",ExpressionUUID->"a2231d6b-2821-4d7d-aed2-7ddef0ec298c"]
 }, Open  ]],
-Cell[20534, 542, 132, 3, 45, "Input",ExpressionUUID->"d26a5c87-aa2c-4a67-bb5e-0e99f0d4bc91"],
-Cell[20669, 547, 120, 3, 28, "Item",ExpressionUUID->"c3cc1a73-f183-4f15-80ab-89023212a9e0"]
+Cell[20187, 530, 120, 3, 28, "Item",ExpressionUUID->"c3cc1a73-f183-4f15-80ab-89023212a9e0"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[20826, 555, 152, 3, 54, "Section",ExpressionUUID->"cf35cfb8-1486-4825-812c-90f8a5331531"],
-Cell[20981, 560, 158, 3, 37, "Subsection",ExpressionUUID->"fb0467b7-2560-426a-9885-71fadd10c604"],
-Cell[21142, 565, 207, 4, 30, "Subsection",ExpressionUUID->"c41b306e-d6c7-44a3-8405-b6b45ba7f785"]
+Cell[20344, 538, 152, 3, 54, "Section",ExpressionUUID->"cf35cfb8-1486-4825-812c-90f8a5331531"],
+Cell[20499, 543, 158, 3, 37, "Subsection",ExpressionUUID->"fb0467b7-2560-426a-9885-71fadd10c604"],
+Cell[20660, 548, 207, 4, 30, "Subsection",ExpressionUUID->"c41b306e-d6c7-44a3-8405-b6b45ba7f785"]
 }, Open  ]],
-Cell[21364, 572, 78, 0, 54, "Section",ExpressionUUID->"5db27201-8e84-44c4-a7b8-56e401f6c4eb"]
+Cell[20882, 555, 78, 0, 54, "Section",ExpressionUUID->"5db27201-8e84-44c4-a7b8-56e401f6c4eb"]
 }, Open  ]]
 }, Open  ]]
 }
