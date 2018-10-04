@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     53797,       1404]
-NotebookOptionsPosition[     42795,       1154]
-NotebookOutlinePosition[     50389,       1350]
-CellTagsIndexPosition[     50346,       1347]
+NotebookDataLength[     59766,       1513]
+NotebookOptionsPosition[     48666,       1262]
+NotebookOutlinePosition[     56260,       1458]
+CellTagsIndexPosition[     56217,       1455]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -378,7 +378,7 @@ Cell[BoxData[{
        RowBox[{"RandomInteger", "[", 
         RowBox[{"{", 
          RowBox[{
-          SuperscriptBox["2", "50"], ",", 
+          SuperscriptBox["2", "num"], ",", 
           RowBox[{
            SuperscriptBox["2", 
             RowBox[{"num", "+", "1"}]], "-", "1"}]}], "}"}], "]"}], "]"}]}], 
@@ -388,7 +388,7 @@ Cell[BoxData[{
        RowBox[{"RandomInteger", "[", 
         RowBox[{"{", 
          RowBox[{
-          SuperscriptBox["2", "50"], ",", 
+          SuperscriptBox["2", "num"], ",", 
           RowBox[{
            SuperscriptBox["2", 
             RowBox[{"num", "+", "1"}]], "-", "1"}]}], "}"}], "]"}], "]"}]}], 
@@ -634,7 +634,7 @@ Cell[BoxData[{
  RowBox[{"For", "[", 
   RowBox[{
    RowBox[{"i", "=", " ", "50"}], ",", 
-   RowBox[{"i", "<", "100"}], ",", 
+   RowBox[{"i", "<", "101"}], ",", 
    RowBox[{"i", "++"}], ",", " ", 
    RowBox[{
     RowBox[{"GenerateKeys", "[", "i", "]"}], ";", 
@@ -650,27 +650,385 @@ Cell[BoxData[{
     RowBox[{"AppendTo", "[", 
      RowBox[{"listOfTiming", ",", 
       RowBox[{"{", 
+       RowBox[{"i", ",", 
+        RowBox[{
+         RowBox[{"Timing", "[", 
+          RowBox[{"RSAcrack", "[", 
+           RowBox[{"crypt", ",", "nn", ",", "ee"}], "]"}], "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], "}"}]}], "]"}]}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"listOfTiming", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"timelist", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
        RowBox[{
-        RowBox[{"Timing", "[", 
-         RowBox[{"RSAcrack", "[", 
-          RowBox[{"crypt", ",", "nn", ",", "ee"}], "]"}], "]"}], ",", "i"}], 
-       "}"}]}], "]"}]}]}], "]"}], "\[IndentingNewLine]", 
- RowBox[{"listOfTiming", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{
+         "0.046891`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "50"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.049316`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "51"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.040534`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "52"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.056226`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "53"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.050325`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "54"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.073631`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "55"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.056282`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "56"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.082806`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "57"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.077497`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "58"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.0942`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "59"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.128801`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "60"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.148561`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "61"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.138184`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "62"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.202212`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "63"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.23488`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "64"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.242689`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "65"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.201249`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "66"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.152307`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "67"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.194841`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "68"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.288117`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "69"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.381733`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "70"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.353031`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "71"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.387156`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "72"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.464148`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "73"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.623461`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "74"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.984965`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "75"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.863751`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "76"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "0.78939`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "77"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "1.166248`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "78"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "3.801099`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "79"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "4.336117`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "80"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "3.607447`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "81"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "5.626473`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "82"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "3.963263`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "83"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "5.534229`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "84"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "7.178113`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "85"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "9.742031`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "86"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "8.832977`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "87"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "8.443968`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "88"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "12.099588`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "89"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "11.681414`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "90"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "17.863461`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "91"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "22.381151`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "92"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "10.368071`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "93"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "24.442973`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "94"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "49.249459`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "95"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "28.202286`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "96"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "53.349584`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "97"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "69.127599`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "98"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "107.959133`", ",", 
+          "\"\<ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\>\""}], "}"}],
+         ",", "99"}], "}"}]}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"timePlot", " ", "=", " ", 
-   RowBox[{"ListPlot", "[", "ar", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"ListPlot", "[", "listOfTiming", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"probabilityPlot", " ", "=", 
    RowBox[{"Plot", "[", 
     RowBox[{"0.501219409637541`", ",", 
      RowBox[{"{", 
-      RowBox[{"x", ",", "0", ",", "1000"}], "}"}], ",", 
+      RowBox[{"x", ",", "100", ",", "200"}], "}"}], ",", 
      RowBox[{"PlotLabel", "\[Rule]", "\"\<0.501\>\""}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Show", "[", 
-   RowBox[{"aPlot", ",", "probabilityPlot"}], "]"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ RowBox[{"Show", "[", 
+  RowBox[{"timePlot", ",", "probabilityPlot"}], "]"}]}], "Input",
  CellChangeTimes->{{3.747549876507493*^9, 3.7475499112114553`*^9}, {
    3.7475499438211703`*^9, 3.7475499492750454`*^9}, {3.7475499914124193`*^9, 
    3.747550014662299*^9}, {3.74755120878083*^9, 3.74755121152407*^9}, {
@@ -749,7 +1107,15 @@ Cell[BoxData[{
    3.7476405511507034`*^9, 3.7476405912169724`*^9}, {3.747641145129446*^9, 
    3.747641262611907*^9}, {3.74764129478272*^9, 3.747641314929543*^9}, {
    3.747641346001445*^9, 3.7476413485512667`*^9}, {3.747642622440736*^9, 
-   3.747642637591256*^9}},ExpressionUUID->"6fdbb906-5bdb-4ac2-8605-\
+   3.747642637591256*^9}, {3.747642732567768*^9, 3.747642741031864*^9}, {
+   3.7476428653177967`*^9, 3.74764289063243*^9}, {3.747643001369726*^9, 
+   3.747643025515806*^9}, {3.7476430582960663`*^9, 3.7476430905175447`*^9}, {
+   3.747643142316393*^9, 3.7476432181753798`*^9}, {3.747643290678796*^9, 
+   3.747643299383112*^9}, {3.74764333501898*^9, 3.74764334465656*^9}, {
+   3.747643393927869*^9, 3.747643395344612*^9}, {3.747643519309816*^9, 
+   3.747643541284564*^9}, {3.7476438352845707`*^9, 3.7476438411723948`*^9}, {
+   3.747644141061266*^9, 
+   3.747644142963789*^9}},ExpressionUUID->"6fdbb906-5bdb-4ac2-8605-\
 06731da069ee"],
 
 Cell[BoxData[
@@ -760,372 +1126,114 @@ Cell[BoxData[
    3.7476392302330523`*^9, 3.7476392464576683`*^9}, 3.747639309051132*^9, {
    3.747639374824563*^9, 3.7476394096694984`*^9}, 3.7476395168483467`*^9, 
    3.7476407725247345`*^9, 3.747641264271537*^9, {3.747641298068548*^9, 
-   3.74764131701021*^9}, 3.7476413514282837`*^9},
+   3.74764131701021*^9}, 3.7476413514282837`*^9, {3.747643037560095*^9, 
+   3.747643064967326*^9}, 3.747643101602921*^9, {3.747643294124069*^9, 
+   3.747643307439196*^9}, 3.7476433995892076`*^9, {3.7476435264781303`*^9, 
+   3.7476435437441397`*^9}, 3.74764384385585*^9},
  CellLabel->
-  "Out[763]=",ExpressionUUID->"96fd2029-5966-4548-83b2-e77e0d2da34b"],
+  "Out[915]=",ExpressionUUID->"9cf677b4-6bae-4ca0-b724-cd70aa593368"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{
    RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.046891`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "50"}], "}"}], ",", 
+    RowBox[{"50", ",", "0.043667`"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.049316`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "51"}], "}"}], ",", 
+    RowBox[{"51", ",", "0.021417`"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.040534`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "52"}], "}"}], ",", 
+    RowBox[{"52", ",", "0.052099`"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.056226`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "53"}], "}"}], ",", 
+    RowBox[{"53", ",", "0.054587`"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.050325`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "54"}], "}"}], ",", 
+    RowBox[{"54", ",", "0.053036`"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.073631`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "55"}], "}"}], ",", 
+    RowBox[{"55", ",", "0.066096`"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.056282`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "56"}], "}"}], ",", 
+    RowBox[{"56", ",", "0.062633`"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.082806`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "57"}], "}"}], ",", 
+    RowBox[{"57", ",", "0.082055`"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.077497`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "58"}], "}"}], ",", 
+    RowBox[{"58", ",", "0.071957`"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.0942`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "59"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.128801`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "60"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.148561`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "61"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.138184`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "62"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.202212`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "63"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.23488`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "64"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.242689`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "65"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.201249`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "66"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.152307`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "67"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.194841`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "68"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.288117`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "69"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.381733`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "70"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.353031`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "71"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.387156`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "72"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.464148`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "73"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.623461`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "74"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.984965`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "75"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.863751`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "76"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "0.78939`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "77"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "1.166248`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "78"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "3.801099`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "79"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "4.336117`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "80"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "3.607447`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "81"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "5.626473`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "82"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "3.963263`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "83"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "5.534229`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "84"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "7.178113`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "85"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "9.742031`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "86"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "8.832977`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "87"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "8.443968`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "88"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "12.099588`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "89"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "11.681414`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "90"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "17.863461`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "91"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "22.381151`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "92"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "10.368071`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "93"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "24.442973`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "94"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "49.249459`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "95"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "28.202286`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "96"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "53.349584`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "97"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "69.127599`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "98"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "107.959133`", 
-       ",", "\<\"ATTENTION THE UNIVERSE! BY KINGDOMS RIGHT WHEEL.\"\>"}], 
-      "}"}], ",", "99"}], "}"}]}], "}"}]], "Output",
+    RowBox[{"59", ",", "0.082358`"}], "}"}]}], "}"}]], "Output",
  CellChangeTimes->{{3.7476383757289762`*^9, 3.7476384009423237`*^9}, {
    3.7476385050140343`*^9, 3.747638534279921*^9}, {3.7476386846124945`*^9, 
    3.747638761398633*^9}, {3.747639171670328*^9, 3.747639197263714*^9}, {
    3.7476392302330523`*^9, 3.7476392464576683`*^9}, 3.747639309051132*^9, {
    3.747639374824563*^9, 3.7476394096694984`*^9}, 3.7476395168483467`*^9, 
    3.7476407725247345`*^9, 3.747641264271537*^9, {3.747641298068548*^9, 
-   3.74764131701021*^9}, 3.74764182893086*^9},
+   3.74764131701021*^9}, 3.7476413514282837`*^9, {3.747643037560095*^9, 
+   3.747643064967326*^9}, 3.747643101602921*^9, {3.747643294124069*^9, 
+   3.747643307439196*^9}, 3.7476433995892076`*^9, {3.7476435264781303`*^9, 
+   3.7476435437441397`*^9}, 3.74764384445394*^9},
  CellLabel->
-  "Out[765]=",ExpressionUUID->"5331e6a5-9aff-4dcf-a674-3db93ce1ca8d"]
+  "Out[917]=",ExpressionUUID->"09850b62-6844-46ef-886d-6e0348d1ac11"],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {{}, 
+     {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+      0.012833333333333334`], AbsoluteThickness[1.6], 
+      PointBox[{{50., 0.043667}, {51., 0.021417}, {52., 0.052099}, {53., 
+       0.054587}, {54., 0.053036}, {55., 0.066096}, {56., 0.062633}, {57., 
+       0.082055}, {58., 0.071957}, {59., 
+       0.082358}}]}, {}}, {}, {}, {}, {}}, {{{}, {}, 
+     TagBox[
+      {RGBColor[0.368417, 0.506779, 0.709798], AbsoluteThickness[1.6], 
+       Opacity[1.], LineBox[CompressedData["
+1:eJxTTMoPSmViYGAwAWIQHeTfz8HAEOnwOX+C51/OB/Yq2x9fOG+H4H+Vs5g5
+vxbBv5sw2eECaxRCPoKl5lcLgv/Odb/iMsZoOF97qc69Rx0I/oxd6/Uk2WPg
+fC+np1Mf9CP4d/elpGuKxcL58z/+PJM9GcFfNs3R0146Ds6/83FeJM8sBP+L
+o9uVKLF4OD+AZUGq1VwEP3df+9FO3gQ4/+rmGY/3BSL4axef27ZlCoI/N48/
+RP0ygr++aGXNI7FEOP9moF++VBiCr5rl83bWLAT/UU2+wp27CP72rLmys2SS
+4Px1E1WWLUhA8PdO3vZDeQGCbzshlyHjHoJ//2jt5C+KyXD+zGszPvxNQPBL
+FXhv+i9F8A+lLCtLeoHgq7V43fuoloLw7x33iyezEHxvgYA+uVUIfpRdLYPJ
+CwS/eynzv4naqXD+ledTjuZkIfj2yfUSE9Yh+Id2lpgavEPwt3H1s0/USYPz
+z0xhSrUqQPB//WzoSViP4HvNiLA//xnB5zYMXf7PLB3Of7Ik5uaqUgT/fuDe
+afN3IvifbmrICf5E8EtjdkY5m2fA+VISi5X2VSH419dN37J1J4I/nVnjxq07
+CH54xI7f//8j+AAoGKZS
+        "]]},
+      Annotation[#, "Charting`Private`Tag$10044#1"]& ]}, {}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{49.85937500000001, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{"CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{50., 59.}, {0, 0.082358}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{{3.7476383757289762`*^9, 3.7476384009423237`*^9}, {
+   3.7476385050140343`*^9, 3.747638534279921*^9}, {3.7476386846124945`*^9, 
+   3.747638761398633*^9}, {3.747639171670328*^9, 3.747639197263714*^9}, {
+   3.7476392302330523`*^9, 3.7476392464576683`*^9}, 3.747639309051132*^9, {
+   3.747639374824563*^9, 3.7476394096694984`*^9}, 3.7476395168483467`*^9, 
+   3.7476407725247345`*^9, 3.747641264271537*^9, {3.747641298068548*^9, 
+   3.74764131701021*^9}, 3.7476413514282837`*^9, {3.747643037560095*^9, 
+   3.747643064967326*^9}, 3.747643101602921*^9, {3.747643294124069*^9, 
+   3.747643307439196*^9}, 3.7476433995892076`*^9, {3.7476435264781303`*^9, 
+   3.7476435437441397`*^9}, 3.747643844581058*^9},
+ CellLabel->
+  "Out[921]=",ExpressionUUID->"c22a36f7-da56-42b9-af96-5ecac986bb01"]
 }, Open  ]]
 }, Open  ]],
 
@@ -1393,17 +1501,18 @@ Cell[CellGroupData[{
 Cell[11438, 316, 78, 0, 59, "Section",ExpressionUUID->"a4c88bd6-dac7-47d2-81b0-72668aee5a85"],
 Cell[11519, 318, 1448, 33, 144, "Input",ExpressionUUID->"9353b532-1cf0-4d86-a322-d595be460d4c"],
 Cell[CellGroupData[{
-Cell[12992, 355, 17945, 397, 1893, "Input",ExpressionUUID->"6fdbb906-5bdb-4ac2-8605-06731da069ee"],
-Cell[30940, 754, 623, 10, 34, "Output",ExpressionUUID->"96fd2029-5966-4548-83b2-e77e0d2da34b"],
-Cell[31566, 766, 10536, 361, 539, "Output",ExpressionUUID->"5331e6a5-9aff-4dcf-a674-3db93ce1ca8d"]
+Cell[12992, 355, 29613, 763, 2460, "Input",ExpressionUUID->"6fdbb906-5bdb-4ac2-8605-06731da069ee"],
+Cell[42608, 1120, 844, 13, 34, "Output",ExpressionUUID->"9cf677b4-6bae-4ca0-b724-cd70aa593368"],
+Cell[43455, 1135, 1532, 34, 56, "Output",ExpressionUUID->"09850b62-6844-46ef-886d-6e0348d1ac11"],
+Cell[44990, 1171, 2983, 64, 237, "Output",ExpressionUUID->"c22a36f7-da56-42b9-af96-5ecac986bb01"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[42151, 1133, 152, 3, 59, "Section",ExpressionUUID->"cf35cfb8-1486-4825-812c-90f8a5331531"],
-Cell[42306, 1138, 158, 3, 41, "Subsection",ExpressionUUID->"fb0467b7-2560-426a-9885-71fadd10c604"],
-Cell[42467, 1143, 207, 4, 33, "Subsection",ExpressionUUID->"c41b306e-d6c7-44a3-8405-b6b45ba7f785"]
+Cell[48022, 1241, 152, 3, 59, "Section",ExpressionUUID->"cf35cfb8-1486-4825-812c-90f8a5331531"],
+Cell[48177, 1246, 158, 3, 41, "Subsection",ExpressionUUID->"fb0467b7-2560-426a-9885-71fadd10c604"],
+Cell[48338, 1251, 207, 4, 33, "Subsection",ExpressionUUID->"c41b306e-d6c7-44a3-8405-b6b45ba7f785"]
 }, Open  ]],
-Cell[42689, 1150, 78, 0, 59, "Section",ExpressionUUID->"5db27201-8e84-44c4-a7b8-56e401f6c4eb"]
+Cell[48560, 1258, 78, 0, 59, "Section",ExpressionUUID->"5db27201-8e84-44c4-a7b8-56e401f6c4eb"]
 }, Open  ]]
 }, Open  ]]
 }
