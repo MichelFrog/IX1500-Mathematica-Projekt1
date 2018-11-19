@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     67685,       1404]
-NotebookOptionsPosition[     56663,       1163]
-NotebookOutlinePosition[     64245,       1358]
-CellTagsIndexPosition[     64202,       1355]
+NotebookDataLength[     51972,       1155]
+NotebookOptionsPosition[     42656,        930]
+NotebookOutlinePosition[     50238,       1125]
+CellTagsIndexPosition[     50195,       1122]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -64,10 +64,16 @@ Cell[TextData[{
  StyleBox["how",
   FontWeight->"Bold"],
  " Dijkstra\[CloseCurlyQuote]s algorithm works. Use Mathematica graph-methods \
-to illustrate your explanation with an animation."
+to illustrate your explanation with an animation.\nb) Write your own method \
+in Mathematica using the algorithm to produce a shortest path tree. Verify \
+and compare you algorithm to the built in function FindShortestPath. You are ",
+ StyleBox["expected to have insight",
+  FontWeight->"Bold"],
+ " in how the algorithm works not just the code."
 }], "Text",
- CellChangeTimes->{3.74939747198643*^9, 
-  3.7493975023371663`*^9},ExpressionUUID->"3c717b2a-af0d-4431-a070-\
+ CellChangeTimes->{
+  3.74939747198643*^9, 3.7493975023371663`*^9, {3.750681468461703*^9, 
+   3.7506814690037336`*^9}},ExpressionUUID->"3c717b2a-af0d-4431-a070-\
 805dd45085c9"]
 }, Open  ]],
 
@@ -76,30 +82,48 @@ Cell[CellGroupData[{
 Cell["Result", "Subsection",ExpressionUUID->"f57467d2-328a-4f0a-86f4-51a42016c251"],
 
 Cell["\<\
-Dijskstra\[CloseCurlyQuote]s algorithm finds the shortest path between two \
-vertices in a graph by using a version of a breath first search. You start by \
-marking the distance to all nodes directly reachable from the start node in a \
-list, and setting the rest to infinity. You then add the reachable ones to a \
-priority queue based on the total distance to them. For each element in the \
-priority queue you check its adjacent nodes. If the recorded distance to one \
-of these is greater than the current distance plus the distance there from \
-the current node it\[CloseCurlyQuote]s updated and the current node is set as \
-the \[OpenCurlyQuote]parent\[CloseCurlyQuote] to the node looked at. This \
-goes on until you find the desired node. When this is done you can \
-recursively get the shortest path to a node from the start node using the \
-list of parent nodes.
+a) Dijskstra\[CloseCurlyQuote]s algorithm finds the shortest path between two \
+vertices in a directed weighted graph by using a version of a breath first \
+search. It builds a shortest path tree, which is then used to find the \
+shortest path between the root node and any other node in the tree.
+
+1. Set the distance to all nodes to \[Infinity], except the initial node, \
+which is set to 0. Create a list of visited nodes, and one containing which \
+node gives the shortest path to another node, called a parent.
+2. Add the root to a priority queue based on total distance to its members.
+3.While the queue of nodes is not empty, add all adjacent nodes to the \
+current node to the queue if not already there.
+4.If the distance to one of these adjacent nodes is larger than the distance \
+to the current node and the distance between the two, update the recorded \
+distance to this and add the current node as a parent to the adjacent node.
+5.When all nodes have been visited the parent list will be a shortest path \
+tree.
+
+
+The animation below shows all the nodes that will be visited and in what \
+order when making a search for the shortest path from node \[OpenCurlyQuote]a\
+\[CloseCurlyQuote] to node \[OpenCurlyQuote]h\[CloseCurlyQuote]. 
 \
 \>", "Text",
  CellChangeTimes->{{3.7493989637917566`*^9, 3.7493993256174517`*^9}, {
-  3.7496581499380627`*^9, 3.7496581562674246`*^9}, {3.749677801748071*^9, 
-  3.7496778052392707`*^9}, {3.7496781296908283`*^9, 
-  3.7496782618853893`*^9}},ExpressionUUID->"64357c78-eb69-462c-b7ab-\
+   3.7496581499380627`*^9, 3.7496581562674246`*^9}, {3.749677801748071*^9, 
+   3.7496778052392707`*^9}, {3.7496781296908283`*^9, 
+   3.7496782618853893`*^9}, {3.750680209373687*^9, 3.7506802095756984`*^9}, {
+   3.750680583104063*^9, 3.7506805970088587`*^9}, {3.7506807119654336`*^9, 
+   3.7506807202879095`*^9}, {3.7506817246323547`*^9, 3.750681744903514*^9}, {
+   3.7506819268179193`*^9, 3.750682045387701*^9}, {3.7506821376219764`*^9, 
+   3.7506821377839856`*^9}, {3.7506821767242126`*^9, 3.750682197810419*^9}, {
+   3.7506903967623725`*^9, 3.750690800257451*^9}, {3.750690843331915*^9, 
+   3.750690851274369*^9}, {3.750690927912752*^9, 3.750691055940075*^9}, {
+   3.7506911670574303`*^9, 3.750691215637209*^9}, 3.7506912953317676`*^9, {
+   3.7506913596044436`*^9, 3.7506913662948265`*^9}, {3.7506914714298396`*^9, 
+   3.75069147860725*^9}},ExpressionUUID->"64357c78-eb69-462c-b7ab-\
 f239e4379180"],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`n$$ = "d", Typeset`show$$ = True, 
+   DynamicModuleBox[{$CellContext`n$$ = "e", Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{
@@ -137,20 +161,259 @@ $CellContext`n$$],
     UntrackedVariables:>{Typeset`size$$}], "Animate",
    Deployed->True,
    StripOnInput->False],
-  Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794324647*^9},ExpressionUUID->"cfae5a09-8176-4af6-bb3a-\
-8048522bf076"]
+  Manipulate`InterpretManipulate[1]]], "Input",
+ CellChangeTimes->{{3.750681752835968*^9, 
+  3.7506817643876286`*^9}},ExpressionUUID->"cfae5a09-8176-4af6-bb3a-\
+8048522bf076"],
+
+Cell[TextData[{
+ "b) The code for implementing this algorithm is included in the code section \
+below. The function can take any kind of weighted graph, regardless of node \
+type. I have included comparisons between the shortest path found by my code \
+and by the built in function FindShortestPath. They have both found the same \
+path in all of my test graphs. \n.\n",
+ Cell[BoxData[{"\<\"From\"\>", "\n", "\<\"a\"\>", "\n", "\<\"To:\"\>", "\n", \
+"\<\"g\"\>", "\n", "\<\"Nodes visited:\"\>", "\n", 
+  RowBox[{"{", 
+   RowBox[{"\<\"a\"\>", ",", "\<\"c\"\>", ",", "\<\"f\"\>", ",", "\<\"b\"\>", 
+    ",", "\<\"d\"\>", ",", "\<\"g\"\>"}], 
+   "}"}], "\n", "\<\"Shortest path own code:\"\>", "\n", 
+  RowBox[{"{", 
+   RowBox[{"\<\"a\"\>", ",", "\<\"c\"\>", ",", "\<\"g\"\>"}], 
+   "}"}], "\n", "\<\"Shortest path built in function:\"\>", "\n", 
+  RowBox[{"{", 
+   RowBox[{"\<\"a\"\>", ",", "\<\"c\"\>", ",", "\<\"g\"\>"}], "}"}], "\n", 
+  TagBox[
+   StyleBox[
+    DynamicModuleBox[{$CellContext`n$$ = "f", Typeset`show$$ = True, 
+     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+     "\"untitled\"", Typeset`specs$$ = {{
+       Hold[$CellContext`n$$], {"a", "c", "f", "b", "d", "g"}}}, 
+     Typeset`size$$ = {360., {101., 108.}}, Typeset`update$$ = 0, 
+     Typeset`initDone$$, Typeset`skipInitDone$$ = 
+     True, $CellContext`n$129110$$ = 0}, 
+     DynamicBox[Manipulate`ManipulateBoxes[
+      1, StandardForm, "Variables" :> {$CellContext`n$$ = "a"}, 
+       "ControllerVariables" :> {
+         Hold[$CellContext`n$$, $CellContext`n$129110$$, 0]}, 
+       "OtherVariables" :> {
+        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+         Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
+         Typeset`initDone$$, Typeset`skipInitDone$$}, 
+       "Body" :> $CellContext`drawGraph[$CellContext`g2, \
+$CellContext`origin2, $CellContext`n$$], 
+       "Specifications" :> {{$CellContext`n$$, {"a", "c", "f", "b", "d", "g"},
+           AppearanceElements -> {
+           "ProgressSlider", "PlayPauseButton", "FasterSlowerButtons", 
+            "DirectionButton"}}}, 
+       "Options" :> {
+        ControlType -> Animator, AppearanceElements -> None, DefaultBaseStyle -> 
+         "Animate", DefaultLabelStyle -> "AnimateLabel", SynchronousUpdating -> 
+         True, ShrinkingDelay -> 10.}, "DefaultOptions" :> {}],
+      ImageSizeCache->{411., {140., 147.}},
+      SingleEvaluation->True],
+     Deinitialization:>None,
+     DynamicModuleValues:>{},
+     SynchronousInitialization->True,
+     UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+     UnsavedVariables:>{Typeset`initDone$$},
+     UntrackedVariables:>{Typeset`size$$}], "Animate",
+    Deployed->True,
+    StripOnInput->False],
+   Manipulate`InterpretManipulate[
+   1]], "\n", "\<\"From\"\>", "\n", "\<\"a\"\>", "\n", "\<\"To:\"\>", "\n", "\
+\<\"d\"\>", "\n", "\<\"Nodes visited:\"\>", "\n", 
+  RowBox[{"{", 
+   RowBox[{
+   "1", ",", "3", ",", "6", ",", "2", ",", "4", ",", "7", ",", "5", ",", "5", 
+    ",", "8"}], "}"}], "\n", "\<\"Shortest path own code:\"\>", "\n", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "5", ",", "8"}], 
+   "}"}], "\n", "\<\"Shortest path built infunction:\"\>", "\n", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "2", ",", "4", ",", "5", ",", "8"}], "}"}], "\n", 
+  TagBox[
+   StyleBox[
+    DynamicModuleBox[{$CellContext`n$$ = 8, Typeset`show$$ = True, 
+     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+     "\"untitled\"", Typeset`specs$$ = {{
+       Hold[$CellContext`n$$], {1, 3, 6, 2, 4, 7, 5, 5, 8}}}, 
+     Typeset`size$$ = {360., {101., 108.}}, Typeset`update$$ = 0, 
+     Typeset`initDone$$, Typeset`skipInitDone$$ = 
+     True, $CellContext`n$129156$$ = 0}, 
+     DynamicBox[Manipulate`ManipulateBoxes[
+      1, StandardForm, "Variables" :> {$CellContext`n$$ = 1}, 
+       "ControllerVariables" :> {
+         Hold[$CellContext`n$$, $CellContext`n$129156$$, 0]}, 
+       "OtherVariables" :> {
+        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+         Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
+         Typeset`initDone$$, Typeset`skipInitDone$$}, 
+       "Body" :> $CellContext`drawGraph[$CellContext`g, $CellContext`origin, \
+$CellContext`n$$], 
+       "Specifications" :> {{$CellContext`n$$, {1, 3, 6, 2, 4, 7, 5, 5, 8}, 
+          AppearanceElements -> {
+           "ProgressSlider", "PlayPauseButton", "FasterSlowerButtons", 
+            "DirectionButton"}}}, 
+       "Options" :> {
+        ControlType -> Animator, AppearanceElements -> None, DefaultBaseStyle -> 
+         "Animate", DefaultLabelStyle -> "AnimateLabel", SynchronousUpdating -> 
+         True, ShrinkingDelay -> 10.}, "DefaultOptions" :> {}],
+      ImageSizeCache->{411., {140., 147.}},
+      SingleEvaluation->True],
+     Deinitialization:>None,
+     DynamicModuleValues:>{},
+     SynchronousInitialization->True,
+     UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+     UnsavedVariables:>{Typeset`initDone$$},
+     UntrackedVariables:>{Typeset`size$$}], "Animate",
+    Deployed->True,
+    StripOnInput->False],
+   Manipulate`InterpretManipulate[1]], "\n", 
+  TagBox[
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {"\<\"a\"\>", "\<\"b\"\>", "\<\"h\"\>", "\<\"c\"\>", "\<\"d\"\>", \
+"\<\"i\"\>"},
+      {"0", "8", "2", "18", "19", "\[Infinity]"},
+      {"0", "1", "1", "2", "4", "0"}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}},
+        "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.7]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+   Function[BoxForm`e$, 
+    MatrixForm[
+    BoxForm`e$]]], "\n", "\<\"From\"\>", "\n", "\<\"a\"\>", "\n", \
+"\<\"To:\"\>", "\n", "\<\"d\"\>", "\n", "\<\"Nodes visited:\"\>", "\n", 
+  RowBox[{"{", 
+   RowBox[{"\<\"a\"\>", ",", "\<\"h\"\>", ",", "\<\"b\"\>", ",", "\<\"c\"\>", 
+    ",", "\<\"d\"\>"}], "}"}], "\n", "\<\"Shortest path own code:\"\>", "\n", 
+  RowBox[{"{", 
+   RowBox[{"\<\"a\"\>", ",", "\<\"b\"\>", ",", "\<\"c\"\>", 
+    ",", "\<\"d\"\>"}], 
+   "}"}], "\n", "\<\"Shortest path built in function:\"\>", "\n", 
+  RowBox[{"{", 
+   RowBox[{"\<\"a\"\>", ",", "\<\"b\"\>", ",", "\<\"c\"\>", 
+    ",", "\<\"d\"\>"}], "}"}], "\n", 
+  TagBox[
+   StyleBox[
+    DynamicModuleBox[{$CellContext`n$$ = "c", Typeset`show$$ = True, 
+     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+     "\"untitled\"", Typeset`specs$$ = {{
+       Hold[$CellContext`n$$], {"a", "h", "b", "c", "d"}}}, Typeset`size$$ = {
+     360., {163., 169.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+     Typeset`skipInitDone$$ = True, $CellContext`n$129202$$ = 0}, 
+     DynamicBox[Manipulate`ManipulateBoxes[
+      1, StandardForm, "Variables" :> {$CellContext`n$$ = "a"}, 
+       "ControllerVariables" :> {
+         Hold[$CellContext`n$$, $CellContext`n$129202$$, 0]}, 
+       "OtherVariables" :> {
+        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+         Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
+         Typeset`initDone$$, Typeset`skipInitDone$$}, 
+       "Body" :> $CellContext`drawGraph[$CellContext`g3, \
+$CellContext`origin3, $CellContext`n$$], 
+       "Specifications" :> {{$CellContext`n$$, {"a", "h", "b", "c", "d"}, 
+          AppearanceElements -> {
+           "ProgressSlider", "PlayPauseButton", "FasterSlowerButtons", 
+            "DirectionButton"}}}, 
+       "Options" :> {
+        ControlType -> Animator, AppearanceElements -> None, DefaultBaseStyle -> 
+         "Animate", DefaultLabelStyle -> "AnimateLabel", SynchronousUpdating -> 
+         True, ShrinkingDelay -> 10.}, "DefaultOptions" :> {}],
+      ImageSizeCache->{411., {201., 208.}},
+      SingleEvaluation->True],
+     Deinitialization:>None,
+     DynamicModuleValues:>{},
+     SynchronousInitialization->True,
+     UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+     UnsavedVariables:>{Typeset`initDone$$},
+     UntrackedVariables:>{Typeset`size$$}], "Animate",
+    Deployed->True,
+    StripOnInput->False],
+   Manipulate`InterpretManipulate[1]]}], "Output",
+  GeneratedCell->False,
+  CellAutoOverwrite->False,
+  CellChangeTimes->{3.7506895346020594`*^9, 3.7506900859095926`*^9},
+  ExpressionUUID->"e831fedc-8c44-44e1-a6fd-dbb50ce2e17c"],
+ "\n\n"
+}], "Text",
+ CellChangeTimes->{{3.7506817670657816`*^9, 3.7506818115733275`*^9}, {
+   3.7506818576769643`*^9, 3.7506819301461096`*^9}, {3.7506823188773437`*^9, 
+   3.7506824116096478`*^9}, {3.750687836380927*^9, 3.750687880913474*^9}, 
+   3.7506883017835464`*^9, {3.750688374242691*^9, 3.750688466161948*^9}, 
+   3.7506885165618305`*^9, {3.75068905032036*^9, 3.750689068382393*^9}, {
+   3.7506893300423594`*^9, 3.750689418508419*^9}, {3.750689708952032*^9, 
+   3.7506897301562443`*^9}, {3.7506897800931005`*^9, 3.750689978328439*^9}, {
+   3.750690033516596*^9, 3.750690108696896*^9}, {3.7506902735453243`*^9, 
+   3.7506903154297204`*^9}},ExpressionUUID->"158dbec1-cd63-481e-b403-\
+4a14f940f57f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Sources: ", "Subsection",
+ CellChangeTimes->{{3.7506817670657816`*^9, 3.7506818115733275`*^9}, {
+  3.7506818576769643`*^9, 3.7506819301461096`*^9}, {3.7506823188773437`*^9, 
+  3.7506824116096478`*^9}, {3.750687836380927*^9, 3.750687880913474*^9}, {
+  3.7506883236617975`*^9, 
+  3.750688342993903*^9}},ExpressionUUID->"72770e94-2477-47e3-ba3d-\
+ef71f59fed41"],
+
+Cell["\<\
+1. \tSedgewick, R. (2011). Algorithms. 4th ed.
+2.\tM. Pound (2017, Jan 4) Dijkstra's Algorithm - Computerphile  [Video \
+file]. Available: https://www.youtube.com/watch?v=GazC3A4OQTE\
+\>", "Text",
+ CellChangeTimes->{{3.7506817670657816`*^9, 3.7506818115733275`*^9}, {
+   3.7506818576769643`*^9, 3.7506819301461096`*^9}, {3.7506823188773437`*^9, 
+   3.7506824116096478`*^9}, {3.750687836380927*^9, 3.750687880913474*^9}, 
+   3.7506883236617975`*^9, {3.750691631392989*^9, 
+   3.7506916397354665`*^9}},ExpressionUUID->"83eb965f-d3a6-41f8-8d0e-\
+797df966dad8"]
 }, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell["Code", "Section",ExpressionUUID->"3fc7a590-29c0-4c73-a0f4-dfa64d0808d7"],
+Cell["Discussion", "Section",
+ CellChangeTimes->{{3.7506885036150904`*^9, 
+  3.7506885056022043`*^9}},ExpressionUUID->"095b5deb-9a26-4a57-a201-\
+5ac4fe13d061"],
+
+Cell["\<\
+I have previously implemented Dijkstra' s algorithm in the course ID1020, so \
+I used knowledge from that course as well as the coursebook to write the code \
+for this exercise. Since Mathematica is very different from any other \
+programming language I\[CloseCurlyQuote]m used to I had to use some \
+workarounds, which made it much harder for me to accomplish this. An example \
+of this is the while-loop used in place of a proper priority queue, since I \
+could not find a way to implement one using Mathematica. My code is also made \
+to not keep looking after the desired node has been found, as we know that \
+the shortest path to a node has been found when it is at the top of the \
+priority queue.\
+\>", "Text",
+ CellChangeTimes->{{3.750688508642378*^9, 3.750688691121815*^9}, {
+  3.750691065080598*^9, 3.750691153338646*^9}, {3.7506913970285845`*^9, 
+  3.750691398824687*^9}},ExpressionUUID->"13be340a-c15f-409b-865b-\
+8062ea07f523"]
+}, Open  ]],
 
 Cell[CellGroupData[{
+
+Cell["Code", "Section",ExpressionUUID->"3fc7a590-29c0-4c73-a0f4-dfa64d0808d7"],
 
 Cell[BoxData[{
  RowBox[{
@@ -479,7 +742,9 @@ Cell[BoxData[{
        RowBox[{"VertexList", "[", "g2", "]"}], ",", "distance", ",", 
        "parent"}], "}"}], "]"}], "\[IndentingNewLine]", 
     RowBox[{"MatrixForm", "[", "adjacent", "]"}]}], 
-   "*)"}]}], "\[IndentingNewLine]", "\"\<Nodes visited:\>\"", "\
+   "*)"}]}], "\[IndentingNewLine]", "\"\<From\>\"", "\[IndentingNewLine]", \
+"origin2", "\[IndentingNewLine]", "\"\<To:\>\"", "\[IndentingNewLine]", \
+"destination2", "\[IndentingNewLine]", "\"\<Nodes visited:\>\"", "\
 \[IndentingNewLine]", "test", "\[IndentingNewLine]", "\"\<Shortest path own \
 code:\>\"", "\[IndentingNewLine]", "path", "\[IndentingNewLine]", \
 "\"\<Shortest path built in function:\>\"", "\[IndentingNewLine]", 
@@ -512,8 +777,10 @@ code:\>\"", "\[IndentingNewLine]", "path", "\[IndentingNewLine]", \
   RowBox[{"(*", 
    RowBox[{
     RowBox[{"MatrixForm", "[", "adjacent", "]"}], "\[IndentingNewLine]", 
-    "posFrom", "\[IndentingNewLine]", "posTo"}], "*)"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", "\"\<Nodes visited:\>\"", "\
+    "posFrom", "\[IndentingNewLine]", "posTo"}], 
+   "*)"}]}], "\[IndentingNewLine]", "\"\<From\>\"", "\[IndentingNewLine]", \
+"origin3", "\[IndentingNewLine]", "\"\<To:\>\"", "\[IndentingNewLine]", \
+"destination3", "\[IndentingNewLine]", "\"\<Nodes visited:\>\"", "\
 \[IndentingNewLine]", "test", "\[IndentingNewLine]", "\"\<Shortest path own \
 code:\>\"", "\[IndentingNewLine]", "path", "\[IndentingNewLine]", \
 "\"\<Shortest path built infunction:\>\"", "\[IndentingNewLine]", 
@@ -546,7 +813,9 @@ code:\>\"", "\[IndentingNewLine]", "path", "\[IndentingNewLine]", \
      "}"}], "]"}], "\[IndentingNewLine]", 
   RowBox[{"(*", 
    RowBox[{"MatrixForm", "[", "adjacent", "]"}], 
-   "*)"}]}], "\[IndentingNewLine]", "\"\<Nodes visited:\>\"", "\
+   "*)"}]}], "\[IndentingNewLine]", "\"\<From\>\"", "\[IndentingNewLine]", \
+"origin3", "\[IndentingNewLine]", "\"\<To:\>\"", "\[IndentingNewLine]", \
+"destination3", "\[IndentingNewLine]", "\"\<Nodes visited:\>\"", "\
 \[IndentingNewLine]", "test", "\[IndentingNewLine]", "\"\<Shortest path own \
 code:\>\"", "\[IndentingNewLine]", "path", "\[IndentingNewLine]", \
 "\"\<Shortest path built in function:\>\"", "\[IndentingNewLine]", 
@@ -651,512 +920,10 @@ code:\>\"", "\[IndentingNewLine]", "path", "\[IndentingNewLine]", \
    3.7498951399635763`*^9, 3.7498951432527647`*^9}, {3.749895229857718*^9, 
    3.7498953634963617`*^9}, {3.749895435199463*^9, 3.7498954527844687`*^9}, 
    3.749895542695611*^9, {3.749895609322422*^9, 3.7498956253063364`*^9}, {
-   3.7498956941512737`*^9, 3.7498956976854763`*^9}, 
-   3.7498957532956567`*^9},ExpressionUUID->"0e5e24f0-d089-4431-8d38-\
-71c67f8395b9"],
-
-Cell[BoxData["\<\"Nodes visited:\"\>"], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.7498957552787704`*^9},ExpressionUUID->"4c006efb-48e4-4c6a-9bd7-\
-6e53a2b0bfcc"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"\<\"a\"\>", ",", "\<\"c\"\>", ",", "\<\"f\"\>", ",", "\<\"b\"\>", 
-   ",", "\<\"d\"\>", ",", "\<\"g\"\>"}], "}"}]], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.7498957552827706`*^9},ExpressionUUID->"05a7ffcc-b182-4d7d-91dd-\
-542113728dfe"],
-
-Cell[BoxData["\<\"Shortest path own code:\"\>"], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.749895755284771*^9},ExpressionUUID->"c4b78f3a-4ef1-48a4-aaad-\
-b964aad8873a"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"\<\"a\"\>", ",", "\<\"c\"\>", ",", "\<\"g\"\>"}], "}"}]], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.749895755286771*^9},ExpressionUUID->"1ff05ee9-12fb-44fe-b201-\
-9f5ecaba9fe9"],
-
-Cell[BoxData["\<\"Shortest path built in function:\"\>"], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.7498957552887707`*^9},ExpressionUUID->"620e56a0-1117-4f84-b21c-\
-abadd2ad8075"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"\<\"a\"\>", ",", "\<\"c\"\>", ",", "\<\"g\"\>"}], "}"}]], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.749895755290771*^9},ExpressionUUID->"5b3a281d-95d4-4a93-88fa-\
-061632799457"],
-
-Cell[BoxData[
- TagBox[
-  StyleBox[
-   DynamicModuleBox[{$CellContext`n$$ = "f", Typeset`show$$ = True, 
-    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
-    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
-    "\"untitled\"", Typeset`specs$$ = {{
-      Hold[$CellContext`n$$], {"a", "c", "f", "b", "d", "g"}}}, 
-    Typeset`size$$ = {360., {101., 108.}}, Typeset`update$$ = 0, 
-    Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`n$46662$$ = 0}, 
-    DynamicBox[Manipulate`ManipulateBoxes[
-     1, StandardForm, "Variables" :> {$CellContext`n$$ = "a"}, 
-      "ControllerVariables" :> {
-        Hold[$CellContext`n$$, $CellContext`n$46662$$, 0]}, 
-      "OtherVariables" :> {
-       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
-        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
-        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
-         Typeset`skipInitDone$$}, 
-      "Body" :> $CellContext`drawGraph[$CellContext`g2, $CellContext`origin2, \
-$CellContext`n$$], 
-      "Specifications" :> {{$CellContext`n$$, {"a", "c", "f", "b", "d", "g"}, 
-         AppearanceElements -> {
-          "ProgressSlider", "PlayPauseButton", "FasterSlowerButtons", 
-           "DirectionButton"}}}, 
-      "Options" :> {
-       ControlType -> Animator, AppearanceElements -> None, DefaultBaseStyle -> 
-        "Animate", DefaultLabelStyle -> "AnimateLabel", SynchronousUpdating -> 
-        True, ShrinkingDelay -> 10.}, "DefaultOptions" :> {}],
-     ImageSizeCache->{411., {140., 147.}},
-     SingleEvaluation->True],
-    Deinitialization:>None,
-    DynamicModuleValues:>{},
-    SynchronousInitialization->True,
-    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
-    UnsavedVariables:>{Typeset`initDone$$},
-    UntrackedVariables:>{Typeset`size$$}], "Animate",
-   Deployed->True,
-   StripOnInput->False],
-  Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.7498957552977715`*^9},ExpressionUUID->"066258bc-2675-4b3e-b91b-\
-fc1dbad78c4b"],
-
-Cell[BoxData[
- TagBox[
-  RowBox[{"(", "\[NoBreak]", GridBox[{
-     {"1", "2", "3", "6", "4", "5", "7", "8", "9"},
-     {"0", "8", "2", "7", "11", "13", "12", "16", "\[Infinity]"},
-     {"0", "1", "1", "1", "2", "5", "3", "6", "0"}
-    },
-    GridBoxAlignment->{
-     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-      "RowsIndexed" -> {}},
-    GridBoxSpacings->{"Columns" -> {
-        Offset[0.27999999999999997`], {
-         Offset[0.7]}, 
-        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-        Offset[0.2], {
-         Offset[0.4]}, 
-        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
-  Function[BoxForm`e$, 
-   MatrixForm[BoxForm`e$]]]], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.7498957554037776`*^9},ExpressionUUID->"c0e1583e-c327-45e1-a01d-\
-fd0939e92ba8"],
-
-Cell[BoxData["\<\"Nodes visited:\"\>"], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.7498957554067774`*^9},ExpressionUUID->"bbe7515a-69d8-4bbb-8766-\
-9021a5416c32"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{
-  "1", ",", "3", ",", "6", ",", "2", ",", "4", ",", "7", ",", "5", ",", "5", 
-   ",", "8"}], "}"}]], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.7498957554087777`*^9},ExpressionUUID->"e95fca38-cc2d-4f22-bdf0-\
-8827ed168801"],
-
-Cell[BoxData["\<\"Shortest path own code:\"\>"], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.749895755409778*^9},ExpressionUUID->"772e15fa-9302-4702-b0d8-\
-5ce6fbfd71d4"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"1", ",", "2", ",", "4", ",", "5", ",", "8"}], "}"}]], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.749895755411778*^9},ExpressionUUID->"8d8c04be-968c-4bcd-b41b-\
-ffcd911148be"],
-
-Cell[BoxData["\<\"Shortest path built infunction:\"\>"], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.749895755412778*^9},ExpressionUUID->"a1a849a8-72da-4355-9d18-\
-32140dd18e86"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"1", ",", "2", ",", "4", ",", "5", ",", "8"}], "}"}]], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.7498957554147778`*^9},ExpressionUUID->"1e0ceb3d-6be1-401a-bf18-\
-481f4fbf6ee8"],
-
-Cell[BoxData[
- TagBox[
-  StyleBox[
-   DynamicModuleBox[{$CellContext`n$$ = 2, Typeset`show$$ = True, 
-    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
-    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
-    "\"untitled\"", Typeset`specs$$ = {{
-      Hold[$CellContext`n$$], {1, 3, 6, 2, 4, 7, 5, 5, 8}}}, 
-    Typeset`size$$ = {360., {101., 108.}}, Typeset`update$$ = 0, 
-    Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`n$46708$$ = 0}, 
-    DynamicBox[Manipulate`ManipulateBoxes[
-     1, StandardForm, "Variables" :> {$CellContext`n$$ = 1}, 
-      "ControllerVariables" :> {
-        Hold[$CellContext`n$$, $CellContext`n$46708$$, 0]}, 
-      "OtherVariables" :> {
-       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
-        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
-        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
-         Typeset`skipInitDone$$}, 
-      "Body" :> $CellContext`drawGraph[$CellContext`g, $CellContext`origin, \
-$CellContext`n$$], 
-      "Specifications" :> {{$CellContext`n$$, {1, 3, 6, 2, 4, 7, 5, 5, 8}, 
-         AppearanceElements -> {
-          "ProgressSlider", "PlayPauseButton", "FasterSlowerButtons", 
-           "DirectionButton"}}}, 
-      "Options" :> {
-       ControlType -> Animator, AppearanceElements -> None, DefaultBaseStyle -> 
-        "Animate", DefaultLabelStyle -> "AnimateLabel", SynchronousUpdating -> 
-        True, ShrinkingDelay -> 10.}, "DefaultOptions" :> {}],
-     ImageSizeCache->{411., {140., 147.}},
-     SingleEvaluation->True],
-    Deinitialization:>None,
-    DynamicModuleValues:>{},
-    SynchronousInitialization->True,
-    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
-    UnsavedVariables:>{Typeset`initDone$$},
-    UntrackedVariables:>{Typeset`size$$}], "Animate",
-   Deployed->True,
-   StripOnInput->False],
-  Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.7498957554327793`*^9},ExpressionUUID->"4d35f5fa-84fd-4d7a-985d-\
-162355858e57"],
-
-Cell[BoxData[
- TagBox[
-  RowBox[{"(", "\[NoBreak]", GridBox[{
-     {"\<\"a\"\>", "\<\"b\"\>", "\<\"h\"\>", "\<\"c\"\>", "\<\"d\"\>", "\<\"i\
-\"\>"},
-     {"0", "8", "2", "18", "19", "\[Infinity]"},
-     {"0", "1", "1", "2", "4", "0"}
-    },
-    GridBoxAlignment->{
-     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-      "RowsIndexed" -> {}},
-    GridBoxSpacings->{"Columns" -> {
-        Offset[0.27999999999999997`], {
-         Offset[0.7]}, 
-        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-        Offset[0.2], {
-         Offset[0.4]}, 
-        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
-  Function[BoxForm`e$, 
-   MatrixForm[BoxForm`e$]]]], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.749895755550786*^9},ExpressionUUID->"22750a55-7986-41ef-a8e3-\
-83fb234c56f7"],
-
-Cell[BoxData["\<\"Nodes visited:\"\>"], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.749895755552786*^9},ExpressionUUID->"4ea2260f-dc06-454f-96b6-\
-207165adb2b0"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"\<\"a\"\>", ",", "\<\"h\"\>", ",", "\<\"b\"\>", ",", "\<\"c\"\>", 
-   ",", "\<\"d\"\>"}], "}"}]], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.749895755555786*^9},ExpressionUUID->"a03e0acd-4741-4dd5-bb44-\
-cc7080f5f1b1"],
-
-Cell[BoxData["\<\"Shortest path own code:\"\>"], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.7498957555567865`*^9},ExpressionUUID->"16fec1f4-050d-4ec9-a922-\
-7435aa87b8a0"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"\<\"a\"\>", ",", "\<\"b\"\>", ",", "\<\"c\"\>", ",", "\<\"d\"\>"}],
-   "}"}]], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.7498957555587864`*^9},ExpressionUUID->"c273f0eb-a8bc-4ac1-ace0-\
-5010b464c219"],
-
-Cell[BoxData["\<\"Shortest path built in function:\"\>"], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.7498957555607862`*^9},ExpressionUUID->"7fea2ec7-edc9-4f15-912a-\
-3fd1e0ad900c"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"\<\"a\"\>", ",", "\<\"b\"\>", ",", "\<\"c\"\>", ",", "\<\"d\"\>"}],
-   "}"}]], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.7498957555617867`*^9},ExpressionUUID->"143b6ed8-5866-4f6a-92c1-\
-f1bc206c1604"],
-
-Cell[BoxData[
- TagBox[
-  StyleBox[
-   DynamicModuleBox[{$CellContext`n$$ = "b", Typeset`show$$ = True, 
-    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
-    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
-    "\"untitled\"", Typeset`specs$$ = {{
-      Hold[$CellContext`n$$], {"a", "h", "b", "c", "d"}}}, Typeset`size$$ = {
-    360., {163., 169.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = True, $CellContext`n$46754$$ = 0}, 
-    DynamicBox[Manipulate`ManipulateBoxes[
-     1, StandardForm, "Variables" :> {$CellContext`n$$ = "a"}, 
-      "ControllerVariables" :> {
-        Hold[$CellContext`n$$, $CellContext`n$46754$$, 0]}, 
-      "OtherVariables" :> {
-       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
-        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
-        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
-         Typeset`skipInitDone$$}, 
-      "Body" :> $CellContext`drawGraph[$CellContext`g3, $CellContext`origin3, \
-$CellContext`n$$], 
-      "Specifications" :> {{$CellContext`n$$, {"a", "h", "b", "c", "d"}, 
-         AppearanceElements -> {
-          "ProgressSlider", "PlayPauseButton", "FasterSlowerButtons", 
-           "DirectionButton"}}}, 
-      "Options" :> {
-       ControlType -> Animator, AppearanceElements -> None, DefaultBaseStyle -> 
-        "Animate", DefaultLabelStyle -> "AnimateLabel", SynchronousUpdating -> 
-        True, ShrinkingDelay -> 10.}, "DefaultOptions" :> {}],
-     ImageSizeCache->{411., {201., 208.}},
-     SingleEvaluation->True],
-    Deinitialization:>None,
-    DynamicModuleValues:>{},
-    SynchronousInitialization->True,
-    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
-    UnsavedVariables:>{Typeset`initDone$$},
-    UntrackedVariables:>{Typeset`size$$}], "Animate",
-   Deployed->True,
-   StripOnInput->False],
-  Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{{3.749677055421384*^9, 3.749677076326579*^9}, {
-   3.749677108124398*^9, 3.7496771596073427`*^9}, 3.74967722966435*^9, 
-   3.7496772787191553`*^9, 3.749677310327964*^9, 3.7496774036232996`*^9, 
-   3.749677794265643*^9, 3.7496778581772985`*^9, 3.7496779442342205`*^9, {
-   3.7496780096479626`*^9, 3.7496780435459013`*^9}, 3.7498943010323353`*^9, 
-   3.7498944505158854`*^9, 3.749894505876052*^9, 3.7498946955571575`*^9, {
-   3.749894766304204*^9, 3.7498948118478093`*^9}, {3.7498948764775057`*^9, 
-   3.749894904546111*^9}, {3.749895347179428*^9, 3.7498953652694635`*^9}, {
-   3.7498954383226414`*^9, 3.749895456783697*^9}, 3.749895547276873*^9, 
-   3.7498956270704374`*^9, 3.749895699928604*^9, 
-   3.7498957555687866`*^9},ExpressionUUID->"037f2f61-5e2c-47dd-b0a9-\
-8eb40ce7f590"]
-}, Open  ]]
+   3.7498956941512737`*^9, 3.7498956976854763`*^9}, 3.7498957532956567`*^9, {
+   3.750689485173232*^9, 
+   3.7506895313778753`*^9}},ExpressionUUID->"0e5e24f0-d089-4431-8d38-\
+71c67f8395b9"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -1367,42 +1134,26 @@ Cell[CellGroupData[{
 Cell[1342, 52, 154, 3, 60, "Section",ExpressionUUID->"a9736660-edfb-42f3-b9d5-5aa2acda89b0"],
 Cell[CellGroupData[{
 Cell[1521, 59, 81, 0, 41, "Subsection",ExpressionUUID->"c8842fa6-4595-4f4e-a225-a29f3495de1d"],
-Cell[1605, 61, 339, 9, 33, "Text",ExpressionUUID->"3c717b2a-af0d-4431-a070-805dd45085c9"]
+Cell[1605, 61, 686, 15, 54, "Text",ExpressionUUID->"3c717b2a-af0d-4431-a070-805dd45085c9"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1981, 75, 83, 0, 41, "Subsection",ExpressionUUID->"f57467d2-328a-4f0a-86f4-51a42016c251"],
-Cell[2067, 77, 1181, 19, 92, "Text",ExpressionUUID->"64357c78-eb69-462c-b7ab-f239e4379180"],
-Cell[3251, 98, 2300, 46, 306, "Output",ExpressionUUID->"cfae5a09-8176-4af6-bb3a-8048522bf076"]
+Cell[2328, 81, 83, 0, 41, "Subsection",ExpressionUUID->"f57467d2-328a-4f0a-86f4-51a42016c251"],
+Cell[2414, 83, 2245, 37, 232, "Text",ExpressionUUID->"64357c78-eb69-462c-b7ab-f239e4379180"],
+Cell[4662, 122, 2131, 44, 302, "Input",ExpressionUUID->"cfae5a09-8176-4af6-bb3a-8048522bf076"],
+Cell[6796, 168, 9589, 193, 1798, "Text",ExpressionUUID->"158dbec1-cd63-481e-b403-4a14f940f57f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16422, 366, 364, 6, 41, "Subsection",ExpressionUUID->"72770e94-2477-47e3-ba3d-ef71f59fed41"],
+Cell[16789, 374, 567, 10, 52, "Text",ExpressionUUID->"83eb965f-d3a6-41f8-8d0e-797df966dad8"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[5600, 150, 78, 0, 60, "Section",ExpressionUUID->"3fc7a590-29c0-4c73-a0f4-dfa64d0808d7"],
+Cell[17405, 390, 159, 3, 60, "Section",ExpressionUUID->"095b5deb-9a26-4a57-a201-5ac4fe13d061"],
+Cell[17567, 395, 951, 15, 72, "Text",ExpressionUUID->"13be340a-c15f-409b-865b-8062ea07f523"]
+}, Open  ]],
 Cell[CellGroupData[{
-Cell[5703, 154, 23488, 501, 1948, "Input",ExpressionUUID->"0e5e24f0-d089-4431-8d38-71c67f8395b9"],
-Cell[29194, 657, 849, 12, 32, "Output",ExpressionUUID->"4c006efb-48e4-4c6a-9bd7-6e53a2b0bfcc"],
-Cell[30046, 671, 965, 15, 32, "Output",ExpressionUUID->"05a7ffcc-b182-4d7d-91dd-542113728dfe"],
-Cell[31014, 688, 856, 12, 32, "Output",ExpressionUUID->"c4b78f3a-4ef1-48a4-aaad-b964aad8873a"],
-Cell[31873, 702, 905, 14, 32, "Output",ExpressionUUID->"1ff05ee9-12fb-44fe-b201-9f5ecaba9fe9"],
-Cell[32781, 718, 867, 12, 32, "Output",ExpressionUUID->"620e56a0-1117-4f84-b21c-abadd2ad8075"],
-Cell[33651, 732, 905, 14, 32, "Output",ExpressionUUID->"5b3a281d-95d4-4a93-88fa-061632799457"],
-Cell[34559, 748, 2764, 52, 306, "Output",ExpressionUUID->"066258bc-2675-4b3e-b91b-fc1dbad78c4b"],
-Cell[37326, 802, 1521, 30, 79, "Output",ExpressionUUID->"c0e1583e-c327-45e1-a01d-fd0939e92ba8"],
-Cell[38850, 834, 849, 12, 32, "Output",ExpressionUUID->"bbe7515a-69d8-4bbb-8766-9021a5416c32"],
-Cell[39702, 848, 950, 16, 32, "Output",ExpressionUUID->"e95fca38-cc2d-4f22-bdf0-8827ed168801"],
-Cell[40655, 866, 856, 12, 32, "Output",ExpressionUUID->"772e15fa-9302-4702-b0d8-5ce6fbfd71d4"],
-Cell[41514, 880, 901, 14, 32, "Output",ExpressionUUID->"8d8c04be-968c-4bcd-b41b-ffcd911148be"],
-Cell[42418, 896, 864, 12, 32, "Output",ExpressionUUID->"a1a849a8-72da-4355-9d18-32140dd18e86"],
-Cell[43285, 910, 903, 14, 32, "Output",ExpressionUUID->"1e0ceb3d-6be1-401a-bf18-481f4fbf6ee8"],
-Cell[44191, 926, 2752, 52, 306, "Output",ExpressionUUID->"4d35f5fa-84fd-4d7a-985d-162355858e57"],
-Cell[46946, 980, 1522, 31, 79, "Output",ExpressionUUID->"22750a55-7986-41ef-a8e3-83fb234c56f7"],
-Cell[48471, 1013, 847, 12, 32, "Output",ExpressionUUID->"4ea2260f-dc06-454f-96b6-207165adb2b0"],
-Cell[49321, 1027, 945, 15, 32, "Output",ExpressionUUID->"a03e0acd-4741-4dd5-bb44-cc7080f5f1b1"],
-Cell[50269, 1044, 858, 12, 32, "Output",ExpressionUUID->"16fec1f4-050d-4ec9-a922-7435aa87b8a0"],
-Cell[51130, 1058, 928, 15, 32, "Output",ExpressionUUID->"c273f0eb-a8bc-4ac1-ace0-5010b464c219"],
-Cell[52061, 1075, 867, 12, 32, "Output",ExpressionUUID->"7fea2ec7-edc9-4f15-912a-3fd1e0ad900c"],
-Cell[52931, 1089, 928, 15, 32, "Output",ExpressionUUID->"143b6ed8-5866-4f6a-92c1-f1bc206c1604"],
-Cell[53862, 1106, 2749, 51, 428, "Output",ExpressionUUID->"037f2f61-5e2c-47dd-b0a9-8eb40ce7f590"]
-}, Open  ]]
+Cell[18555, 415, 78, 0, 60, "Section",ExpressionUUID->"3fc7a590-29c0-4c73-a0f4-dfa64d0808d7"],
+Cell[18636, 417, 23980, 508, 2157, "Input",ExpressionUUID->"0e5e24f0-d089-4431-8d38-71c67f8395b9"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
